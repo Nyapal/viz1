@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <title>
+      Visualization One
+    </title>
+  </head>
   <body>
-    <div></div>
+    <div id="container"></div>
+    <script>
+      const container = document.getElementById('container')
+      container.style.width = '600px'
+      container.style.height = '400px'
+      container.style.border = '1px solid'
+      container.style.borderRadius = '10px'
+
+      const bar_1 = document.createElement('div')
+
+bar_1.style.width = '75%'
+bar_1.style.height = '40px'
+bar_1.style.backgroundColor = '#000'
+
+container.appendChild(bar_1)
+    </script>
   </body>
 </html>
