@@ -8,19 +8,40 @@
   <body>
     <div id="container"></div>
     <script>
-      const container = document.getElementById('container')
-      container.style.width = '600px'
-      container.style.height = '400px'
-      container.style.border = '1px solid'
-      container.style.borderRadius = '10px'
+      function makeGraph (data, colors) {
+        const container = document.getElementById('container')
+        container.style.width = '600px'
+        container.style.height = '400px'
+        container.style.border = '1px solid'
+        container.style.borderRadius = '10px'
 
-      const bar_1 = document.createElement('div')
+        const max = Math.max(...data) // Find Max
+        const dataNormalized = data.map(value => value/max) // normalize
+        const step = 600 / data.length
 
-bar_1.style.width = '75%'
-bar_1.style.height = '40px'
-bar_1.style.backgroundColor = '#000'
+        container.style.position = 'relative'
 
-container.appendChild(bar_1)
+        for (let i = 0; i < data.length; i++) {
+          const el = document.createElement('div')
+          container.appendChild(el)
+          el.style.position = 'absolute'
+          el.style.backgroundColor = colors[i]
+          el.style.height = `${dataNormalized[i] * 400}px`
+          el.style.width = `${step - 1}px`
+          el.style.left = `${step * i}px`
+          el.style.bottom = '0'
+        }
+      }
+
+      makeGraph(
+        [33, 66, 37, 1, 26, 77, 88, 42, 58], 
+        ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 
+         'red', 'orange', 'yellow', 'green', 'blue', 'purple', 
+         'red', 'orange', 'yellow', 'green', 'blue', 'purple']
+        )
+      
+      // Add parameters for the width and height of the container
+
     </script>
   </body>
 </html>
