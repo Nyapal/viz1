@@ -42,6 +42,56 @@
       
       // Add parameters for the width and height of the container
 
+
+
+      const female_survivors = data.reduce((acc, passenger) => {
+        if(passenger.fields.sex === 'female' && passenger.fields.survived === 'Yes') {
+          acc.push(passenger.fields.name)
+        }
+        return acc
+      }, [])
+
+      // List of all of the female passengers who did not survive
+      const deceased_female = data.reduce((acc, passenger) => {
+        if(passenger.fields.sex === 'female' && passenger.fields.survived === 'No') {
+          acc.push(passenger.fields.name)
+        }
+        return acc
+      }, [])
+
+      // List of all of the male passengers who survived
+      const male_survivors = data.reduce((acc, passenger) => {
+        if(passenger.fields.sex === 'male' && passenger.fields.survived === 'Yes') {
+          acc.push(passenger.fields.name)
+        }
+        return acc
+      }, [])
+      
+      // List of all of the male passengers who did not survive
+      const deceased_male = data.reduce((acc, passenger) => {
+        if(passenger.fields.sex === 'male' && passenger.fields.survived === 'No') {
+          acc.push(passenger.fields.name)
+        }
+        return acc
+      }, [])
+
+      function handleData (data) {
+        return data
+      }
+
+      const womenCount = countFields(data, 'sex', 'female')
+      const menCount = countFields(data, 'sex', 'male')
+
+      // Helper function for counting fields 
+      function countFields(data, field, value) {
+        return data.reduce((acc, passenger) => {
+          if (passenger.fields[field] === value) {
+            return acc += 1
+          }
+          return acc 
+        }, 0)
+      }
+
     </script>
   </body>
 </html>
